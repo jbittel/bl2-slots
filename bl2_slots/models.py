@@ -1,6 +1,9 @@
 from django.db import models
 
 
+SLOTS_TYPE = (('T', 'Torgue'),
+              ('M', 'Moxxi'))
+
 SLOTS = ((0, 'Cherries'),
          (1, 'Marcus'),
          (2, 'Bell'),
@@ -13,9 +16,9 @@ SLOTS = ((0, 'Cherries'),
          (9, 'Eridium x1'))
 
 
-class RecordTorgueModel(models.Model):
+class RecordSlotsModel(models.Model):
     sa = models.IntegerField('1st', choices=SLOTS, default=None)
     sb = models.IntegerField('2nd', choices=SLOTS, default=None)
     sc = models.IntegerField('3rd', choices=SLOTS, default=None)
-    # TODO log client IP address
-    #ip = models.IPAddressField()
+    slots_type = models.CharField(max_length=1, choices=SLOTS_TYPE)
+    client_ip = models.IPAddressField()
