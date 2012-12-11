@@ -1,19 +1,49 @@
 {% extends "bl2_slots/base.html" %}
 
 {% block extra_head %}
+<script id="message_template" type="text/x-handlebars-template">
+    {% verbatim %}
+    <div class="alert alert-{{tags}} fade in" data-alert="{{tags}}">
+        <a class="close" title="Close" href="#" data-dismiss="alert">&times;</a>
+        {{{message}}}
+    </div>
+    {% endverbatim %}
+</script>
+
 <script type="text/javascript">
     function apply_form_field_error(fieldname, error) {
-        var input = $("#id_" + fieldname),
-            container = $("#div_id_" + fieldname),
-            error_msg = $("<span />").addClass("help-inline ajax-error").text(error[0]);
+        var input = $("#id_" + fieldname + "_0"),
+            //container = $("#div_id_" + fieldname),
+            error_msg = $("<ul />").addClass("errorlist").append(
+                $("<li />").text(error[0])
+            );
 
-        container.addClass("error");
-        error_msg.insertAfter(input);
+        //container.addClass("error");
+        error_msg.insertBefore(input);
     }
 
     function clear_form_field_errors(form) {
         $(".ajax-error", $(form)).remove();
         $(".error", $(form)).removeClass("error");
+    }
+
+    function display_message(msg, level) {
+        var levels = {
+            warning: 'alert',
+            error: 'error',
+            success: 'success',
+            info: 'info'
+        },
+        source = $('#message_template').html(),
+        template = Handlebars.compile(source),
+        context = {
+            'tags': levels[level],
+            'message': msg
+        },
+        html = template(context);
+
+        $("#message_area").empty().append(html);
+        $('#message_area').fadeTo("fast", 1).animate({opacity: 1.0}, 5000).fadeTo("slow", 0);
     }
 
     $(document).on("submit", "#results_form", function(e) {
@@ -30,18 +60,18 @@
                     sc: $("input:radio[name='sc']:checked").val(),
                 },
                 success: function(data, textStatus, jqXHR) {
-                    // TODO clear radio button state
-                    alert("Slots saved successfully", "success");
+                    $('#results_form')[0].reset();
+                    display_message("Form data saved successfully", "success");
                 },
                 error: function(data, textStatus, jqXHR) {
                     var errors = $.parseJSON(data.responseText);
                     $.each(errors, function(index, value) {
                         if (index === "__all__") {
                             alert(value[0]);
-                            //django_message(value[0], "error");
+                            display_message(value[0], "error");
                         } else {
-                            alert(index + ": " + value);
-                            //apply_form_field_error(index, value);
+                            //alert(index + ": " + value);
+                            apply_form_field_error(index, value);
                         }
                     });
                 }
@@ -84,6 +114,7 @@
 
 {% block content %}
 <h1>Torgue</h1>
+<div id="message_area"></div>
 <form name="results_form" id="results_form" method="POST" action="{% url 'record_torgue' %}">
     {% csrf_token %}
     <table id="results">
