@@ -1,1 +1,2 @@
 -e git://github.com/django/django.git@stable/1.5.x#egg=Django-dev
+simplejson==2.6.2
