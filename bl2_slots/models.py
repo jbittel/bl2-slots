@@ -1,3 +1,9 @@
+try:
+    import simplejson as json
+except ImportError:
+    import json
+import decimal
+
 from django.db import models
 
 
@@ -31,15 +37,50 @@ SYMBOLS = (('NNX', '2 same symbols without bell'),
            ('XXX', 'No match'))
 
 
-class MoxxiOutcomes(models.Model):
+class DecimalEncoder(json.JSONEncoder):
+    def default(self, o):
+        """
+        Convert Decimal instances to floats, formatting them
+        to two decimal places.
+        """
+        if isinstance(o, decimal.Decimal):
+            return format(float(o), '.2f')
+        return super(DecimalEncoder, self).default(o)
+
+class OutcomesManager(models.Manager):
+    def as_json(self):
+        """
+        Output table data as a JSON array of objects.
+        """
+        outcomes = []
+        for object in self.all():
+            outcome = {}
+            for field, val in object:
+                outcome[field] = val
+            outcomes.append(outcome)
+        return json.dumps(outcomes, cls=DecimalEncoder)
+
+class AbstractOutcomes(models.Model):
     symbols = models.CharField(max_length=3, choices=SYMBOLS)
     chance = models.DecimalField(max_digits=4, decimal_places=2)
     reward = models.CharField(max_length=30)
 
-class TorgueOutcomes(models.Model):
-    symbols = models.CharField(max_length=3, choices=SYMBOLS)
-    chance = models.DecimalField(max_digits=4, decimal_places=2)
-    reward = models.CharField(max_length=30)
+    objects = OutcomesManager()
+
+    class Meta:
+        abstract = True
+
+    def __iter__(self):
+        for i in self._meta.get_all_field_names():
+            if i == 'id': # Ignore the id field
+                continue
+            yield (i, getattr(self, i))
+
+class MoxxiOutcomes(AbstractOutcomes):
+    pass
+
+class TorgueOutcomes(AbstractOutcomes):
+    pass
 
 class RecordSlotsModel(models.Model):
     sa = models.IntegerField('1st', choices=SLOTS, default=None)
