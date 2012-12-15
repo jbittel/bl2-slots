@@ -1,0 +1,128 @@
+[
+    {
+        "model": "bl2_slots.moxxioutcomes",
+        "pk": 1,
+        "fields": {
+            "symbols": "NNX",
+            "chance": "20.48",
+            "reward": "White Item"
+        }
+    },
+    {
+        "model": "bl2_slots.moxxioutcomes",
+        "pk": 2,
+        "fields": {
+            "symbols": "777",
+            "chance": "15.36",
+            "reward": "Green Item"
+        }
+    },
+    {
+        "model": "bl2_slots.moxxioutcomes",
+        "pk": 3,
+        "fields": {
+            "symbols": "222",
+            "chance": "1.54",
+            "reward": "Blue Item"
+        }
+    },
+    {
+        "model": "bl2_slots.moxxioutcomes",
+        "pk": 4,
+        "fields": {
+            "symbols": "666",
+            "chance": "0.15",
+            "reward": "Purple Item"
+        }
+    },
+    {
+        "model": "bl2_slots.moxxioutcomes",
+        "pk": 5,
+        "fields": {
+            "symbols": "444",
+            "chance": "0.02",
+            "reward": "Orange Item"
+        }
+    },
+    {
+        "model": "bl2_slots.moxxioutcomes",
+        "pk": 6,
+        "fields": {
+            "symbols": "888",
+            "chance": "2.56",
+            "reward": "4 Eridium"
+        }
+    },
+    {
+        "model": "bl2_slots.moxxioutcomes",
+        "pk": 7,
+        "fields": {
+            "symbols": "999",
+            "chance": "0.77",
+            "reward": "8 Eridium"
+        }
+    },
+    {
+        "model": "bl2_slots.moxxioutcomes",
+        "pk": 8,
+        "fields": {
+            "symbols": "000",
+            "chance": "0.23",
+            "reward": "12 Eridium"
+        }
+    },
+    {
+        "model": "bl2_slots.moxxioutcomes",
+        "pk": 9,
+        "fields": {
+            "symbols": "NN5",
+            "chance": "24.72",
+            "reward": "Little Cash"
+        }
+    },
+    {
+        "model": "bl2_slots.moxxioutcomes",
+        "pk": 10,
+        "fields": {
+            "symbols": "55X",
+            "chance": "0.85",
+            "reward": "Moderate Cash"
+        }
+    },
+    {
+        "model": "bl2_slots.moxxioutcomes",
+        "pk": 11,
+        "fields": {
+            "symbols": "555",
+            "chance": "0.04",
+            "reward": "Large Cash"
+        }
+    },
+    {
+        "model": "bl2_slots.moxxioutcomes",
+        "pk": 12,
+        "fields": {
+            "symbols": "333",
+            "chance": "7.68",
+            "reward": "Grenade"
+        }
+    },
+    {
+        "model": "bl2_slots.moxxioutcomes",
+        "pk": 13,
+        "fields": {
+            "symbols": "111",
+            "chance": "5.12",
+            "reward": "Skin"
+        }
+    },
+    {
+        "model": "bl2_slots.moxxioutcomes",
+        "pk": 14,
+        "fields": {
+            "symbols": "XXX",
+            "chance": "20.48",
+            "reward": "Nothing"
+        }
+    }
+]
