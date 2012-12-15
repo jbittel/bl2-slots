@@ -5,7 +5,7 @@
         "fields": {
             "symbols": "NNX",
             "chance": "20.48",
-            "reward": "White Item"
+            "reward": "$3 in tokens"
         }
     },
     {
@@ -50,7 +50,7 @@
         "fields": {
             "symbols": "888",
             "chance": "2.56",
-            "reward": "4 Eridium"
+            "reward": "$15 in tokens"
         }
     },
     {
@@ -59,7 +59,7 @@
         "fields": {
             "symbols": "999",
             "chance": "0.77",
-            "reward": "8 Eridium"
+            "reward": "$30 in tokens"
         }
     },
     {
@@ -68,7 +68,7 @@
         "fields": {
             "symbols": "000",
             "chance": "0.23",
-            "reward": "12 Eridium"
+            "reward": "$60 in tokens"
         }
     },
     {
@@ -77,7 +77,7 @@
         "fields": {
             "symbols": "NN5",
             "chance": "24.72",
-            "reward": "Little Cash"
+            "reward": "$3 in tokens"
         }
     },
     {
@@ -86,7 +86,7 @@
         "fields": {
             "symbols": "55X",
             "chance": "0.85",
-            "reward": "Moderate Cash"
+            "reward": "$3 in tokens"
         }
     },
     {
@@ -95,7 +95,7 @@
         "fields": {
             "symbols": "555",
             "chance": "0.04",
-            "reward": "Large Cash"
+            "reward": "$10 in tokens"
         }
     },
     {
