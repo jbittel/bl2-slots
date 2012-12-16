@@ -1,8 +1,5 @@
-try:
-    import simplejson as json
-except ImportError:
-    import json
 import decimal
+import json
 
 from django.db import models
 
@@ -38,14 +35,14 @@ SYMBOLS = (('NNX', '2 same symbols without bell'),
 
 
 class DecimalEncoder(json.JSONEncoder):
-    def default(self, o):
+    def default(self, obj):
         """
         Convert Decimal instances to floats, formatting them
         to two decimal places.
         """
-        if isinstance(o, decimal.Decimal):
-            return format(float(o), '.2f')
-        return super(DecimalEncoder, self).default(o)
+        if isinstance(obj, decimal.Decimal):
+            return round(float(obj), 2)
+        return super(DecimalEncoder, self).default(obj)
 
 class OutcomesManager(models.Manager):
     def as_json(self):
