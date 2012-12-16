@@ -53,10 +53,8 @@ class OutcomesManager(models.Manager):
         Output table data as a JSON array of objects.
         """
         outcomes = []
-        for object in self.all():
-            outcome = {}
-            for field, val in object:
-                outcome[field] = val
+        for obj in self.all():
+            outcome = dict([(field, val) for field, val in obj])
             outcomes.append(outcome)
         return json.dumps(outcomes, cls=DecimalEncoder)
 
