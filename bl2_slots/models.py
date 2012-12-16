@@ -78,6 +78,7 @@ class TorgueOutcomes(AbstractOutcomes):
     pass
 
 class RecordSlotsModel(models.Model):
+    # TODO record reward received
     sa = models.IntegerField('1st', choices=SLOTS, default=None)
     sb = models.IntegerField('2nd', choices=SLOTS, default=None)
     sc = models.IntegerField('3rd', choices=SLOTS, default=None)
