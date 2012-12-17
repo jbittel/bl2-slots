@@ -14,19 +14,21 @@ class PlayMoxxiView(TemplateView):
     template_name = 'bl2_slots/play_moxxi.html'
 
     def get_context_data(self, **kwargs):
-        return {
-            'params': kwargs,
+        context = super(PlayMoxxiView, self).get_context_data(**kwargs)
+        context.update({
             'outcomes': MoxxiOutcomes.objects.as_json()
-        }
+        })
+        return context
 
 class PlayTorgueView(TemplateView):
     template_name = 'bl2_slots/play_torgue.html'
 
     def get_context_data(self, **kwargs):
-        return {
-            'params': kwargs,
+        context = super(PlayTorgueView, self).get_context_data(**kwargs)
+        context.update({
             'outcomes': TorgueOutcomes.objects.as_json()
-        }
+        })
+        return context
 
 class RecordTorgueCreateView(JSONResponseMixin, CreateView):
     form_class = RecordTorgueForm
